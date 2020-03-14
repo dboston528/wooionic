@@ -11,14 +11,8 @@
   <ion-card>
     <!-- autoplay not working. look into it -->
     <ion-slides autoplay="3000" pager>
-      <ion-slide>
-        <img src="http://placehold.it/350x200" />
-      </ion-slide>
-      <ion-slide>
-        <img src="http://placehold.it/350x200" />
-      </ion-slide>
-      <ion-slide>
-        <img src="http://placehold.it/350x200" />
+      <ion-slide *ngFor="let number of [1,2,3,4]">
+        <img src="./assets/images/{{number}}.jpg" />
       </ion-slide>
     </ion-slides>
   </ion-card>
