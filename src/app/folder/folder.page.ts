@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import * as WC from 'woocommerce-api';
+import * as WC from '@woocommerce/woocommerce-rest-api';
 
 @Component({
   selector: 'app-folder',
@@ -9,19 +9,17 @@ import * as WC from 'woocommerce-api';
   styleUrls: ['./folder.page.scss']
 })
 export class FolderPage implements OnInit {
+  WooCommerce: any;
   public folder: string;
 
-  WooCommerce: any;
-
-  constructor(private activatedRoute: ActivatedRoute) {
-    //local object\
-    this.WooCommerce = WC({
+  constructor(public activatedRoute: ActivatedRoute) {
+    const api = new WC({
       url: 'http://localhost:8080/web1/',
-      consumerKey: 'ck_7fc7708bad49558bb8a8108b93102f0f271fdf16',
-      consumerSecret: 'cs_0b6b28ae7e1b6acc3289c439b9d98ed29dea0011'
+      consumerKey: 'ck_f4947128ca6b60ac287a469bc9cdb3aafa6bfe67',
+      consumerSecret: 'cs_d73d77634c2ae21f32e098352d4f6c3ff8fa8457',
+      version: 'wc/v3'
     });
-
-    this.WooCommerce.getAsync('products').then(
+    api.get('products').then(
       data => {
         console.log(data);
       },
